@@ -1,0 +1,11 @@
+package sample02;
+
+//xml에서 CalcAdd를 빈(add)으로 Constructor Injection 
+public class CalcAdd implements Calc{
+
+	@Override
+	public void calculate() {
+		
+	}
+
+}

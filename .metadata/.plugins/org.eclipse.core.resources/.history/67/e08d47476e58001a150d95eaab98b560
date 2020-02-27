@@ -1,0 +1,33 @@
+package sample03;
+
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+
+//Constructor Injection
+@AllArgsConstructor
+public class SungJukImpl implements SungJuk{
+	SungJukDTO sungjukDTO;
+	@Override
+	public void calcTot() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void calcAvg() {
+		sungjukDTO.setAvg(sungjukDTO.getTotal()/3.0);
+	}
+
+	@Override
+	public void display() {
+		System.out.println("이름\t국어\t수학\t영어\t총점\t평균\t");
+		System.out.println(sungjukDTO.getName()+"\t"+sungjukDTO.getKor()+"\t"+sungjukDTO.getEng()+"\t"+sungjukDTO.getMath()+"\t"+sungjukDTO.getTotal()+"\t"+String.format("%.3f", sungjukDTO.getAvg()));
+	}
+
+	@Override
+	public void modify() {
+		
+		
+	}
+
+}

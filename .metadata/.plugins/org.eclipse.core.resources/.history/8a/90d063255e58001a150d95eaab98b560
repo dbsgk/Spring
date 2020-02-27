@@ -1,0 +1,12 @@
+package sample02;
+
+//xml에서 CalcMul를 빈(mul)으로 Setter Injection
+public class CalcMul implements Calc{
+
+	@Override
+	public void calculate(int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

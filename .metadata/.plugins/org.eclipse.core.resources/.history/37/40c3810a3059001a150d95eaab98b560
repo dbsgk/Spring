@@ -1,0 +1,17 @@
+package sample05;
+
+import java.util.ArrayList;
+
+import lombok.Setter;
+
+@Setter
+public class SungJukInput implements SungJuk{
+	private List<SungJukDTO2> list;
+
+	@Override
+	public void execute() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

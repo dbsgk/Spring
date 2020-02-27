@@ -1,0 +1,17 @@
+package sample03;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class HelloSpring {
+
+	public static void main(String[] args) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		SungJuk sungjuk = context.getBean("sungJukImpl", SungJuk.class);
+		sungjuk.display();
+		
+		SungJuk sungjuk2 = context.getBean("sungJukDTO", SungJuk.class);
+		sungjuk2.display();
+	}
+
+}

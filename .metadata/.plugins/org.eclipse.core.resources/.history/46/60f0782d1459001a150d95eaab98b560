@@ -1,0 +1,25 @@
+package sample03;
+
+import org.springframework.beans.factory.annotation.Value;
+
+import lombok.Getter;
+import lombok.Setter;
+
+//Setter Injection
+public class SungJukDTO {
+	
+	@Value("홍길동")
+	private String name;
+	private @Value("97")int kor;
+	private @Value("100")int eng;
+	private @Value("95")int math;
+	private int total;
+	private double avg;
+	@Override
+	public String toString() {
+		return (name+"\t"+sungjukDTO.getKor()+"\t"+sungjukDTO.getEng()+"\t"+sungjukDTO.getMath()+"\t"+sungjukDTO.getTotal()+"\t"+String.format("%.2f", sungjukDTO.getAvg()));"SungJukDTO [name=" + name + ", kor=" + kor + ", eng=" + eng + ", math=" + math + ", total=" + total
+				+ ", avg=" + avg + "]";
+	}
+	
+	
+}
