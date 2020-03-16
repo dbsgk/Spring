@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- sample01 -->
+	<context:component-scan base-package="com.conf"/>
+	
+	<!-- 어노테이션으로 pointcut걸어놨으니까 알아서 찾아라. 라고 proxy한테 시킴. -->
+	<aop:aspectj-autoproxy/>
+</beans>
+<!-- 
+Target 클래스 안에 있는 모든 메소드가 joinPoint(타겟대상후보)
+	public void showPrintBefore() {
+	public void viewPrintBefore() {
+	public void display() {
+
+
+-->

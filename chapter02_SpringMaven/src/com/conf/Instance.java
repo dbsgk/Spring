@@ -1,10 +1,16 @@
 package com.conf;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import sample03.SungJukDTO;
 import sample03.SungJukImpl;
+import sample05.SungJukDTO2;
 
+@Configuration//환경설정하겠다. 읽어와라.
 public class Instance {
 	//메소드명을 객체명으로 인식한다
 	//그래서 객체명을 getSungJukImpl로 찾으니 없어서 name="sungJukImpl" 을  부여한 것이다.
@@ -16,6 +22,11 @@ public class Instance {
 	@Bean
 	public SungJukDTO sungJukDTO() {
 		return new SungJukDTO();
+	}
+	
+	@Bean
+	public List<SungJukDTO2> list(){
+		return new ArrayList<SungJukDTO2>();
 	}
 	
 	

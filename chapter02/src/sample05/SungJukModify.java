@@ -10,6 +10,9 @@ public class SungJukModify implements SungJuk{
 	private List<SungJukDTO2> list;
 	SungJukDTO2 sungJukDTO2;
 	
+//	public void setList(List<SungJukDTO2> list) {
+//		this.list = list;
+//	}
 	@Override
 	public void execute() {
 		Scanner scan = new Scanner(System.in);
@@ -23,9 +26,14 @@ public class SungJukModify implements SungJuk{
 				dto.setEng(scan.nextInt());
 				System.out.print("수학점수 입력 : ");
 				dto.setMath(scan.nextInt());
+				dto.setTotal(dto.getKor()+dto.getEng()+dto.getMath());
+				dto.setAvg(dto.getTotal()/3.0);
+				System.out.println(dto.getName()+"님의 데이터를 수정했습니다.");
+				return;
 
 			}
 		}
+		System.out.println("찾고자 하는 이름이 없습니다.");
 //		이름	국어	영어	수학	총점	평균
 //		홍길동
 //

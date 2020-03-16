@@ -2,12 +2,14 @@
 <section name="Workbench">
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="chapter03_SpringMaven"/>
 			<item value="chapter02_SpringMaven"/>
 			<item value="chapter01_SpringMaven"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="chapter03_SpringMaven"/>
 			<item value="chapter02_SpringMaven"/>
 			<item value="chapter01_SpringMaven"/>
 		</list>

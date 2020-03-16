@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+	<!-- Connection Pool & DataSource -->
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="c##java"/>
+		<property name="password" value="bit"/>
+		<property name="maxTotal" value="20"/>
+		<property name="maxIdle" value="3"/>
+	</bean> -->
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		p:driverClassName="oracle.jdbc.driver.OracleDriver"
+		p:url="jdbc:oracle:thin:@localhost:1521:xe"
+		p:username="c##java"
+		p:password="bit"
+		p:maxTotal="20"
+		p:maxIdle="3"
+		/>
+ -->		
+ 	<!--  -->
+ 	<context:property-placeholder location="classpath:spring/db.properties" />
+ 	
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driver}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="maxTotal" value="${jdbc.maxTotal}"/>
+		<property name="maxIdle" value="${jdbc.maxIdle}"/>
+	</bean>
+	<!-- JdbcTemplate : 얘가 DB역할 담당함.-->
+ 	<!--<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="dataSource"></constructor-arg>
+	</bean> -->
+	
+	<!-- SqlSessionFactory --><!-- 여기에 이거 만들기 때문에 datasource를 마이바티스에 뺏기면 안됨. ref해야해서 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:spring/mybatis-config.xml" />
+		<property name="dataSource" ref="dataSource" />
+		
+			<!-- classpath가 경로이기 때문에 user.dao. 이렇게 쓰면 안되고 / (슬래시) 사용해야함 -->
+		<property name="mapperLocations" value="classpath:user/dao/userMapper.xml" />
+	</bean>
+	
+	<!-- SqlSession -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- Transaction --><!-- commit, close만 하니까 커넥션풀만 알고 있으면 된다. 그래서 property는 dataSource하나 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	
+	<!-- main -->
+	<bean id="helloSpring" class="user.main.HelloSpring" />
+	<bean id="userDTO" class="user.bean.UserDTO"/>
+	<bean id="userDAOMybatis" class="user.dao.UserDAOMybatis">
+		<!-- 이제 mybatis가 해줘서 datasource여기에 property할 필요 없음 -->
+		<!-- <property name="dataSource" ref="dataSource"></property> -->
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	
+	<!-- insert -->
+	<bean id="userInsertService" class="user.service.UserInsertService">
+		<property name="userDTO" ref="userDTO"/>
+		<property name="userDAO" ref="userDAOMybatis"></property>
+	</bean>
+	
+	<!-- select -->
+	<bean id="userSelectService" class="user.service.UserSelectService">
+		<property name="userDAO" ref="userDAOMybatis"></property>
+	</bean>
+	
+	<!-- modify -->
+	<bean id="userUpdateService" class="user.service.UserUpdateService">
+		<property name="userDAO" ref="userDAOMybatis"></property>
+	</bean>
+	
+	<!-- delete -->
+	<bean id="userDeleteService" class="user.service.UserDeleteService">
+		<property name="userDAO" ref="userDAOMybatis"></property>
+	</bean>
+	
+	
+</beans>

@@ -38,7 +38,6 @@ public class HelloSpring {
 			}else if(choice==3) {
 				sungJuk = context.getBean("sungJukModify", SungJuk.class);
 			}else if(choice==4) {
-				
 				sungJuk = context.getBean("sungJukDelete", SungJuk.class);
 			}else if(choice==5) {
 				break;

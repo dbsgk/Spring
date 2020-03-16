@@ -1,9 +1,0 @@
-package com.conf;
-
-import sample03.SungJukDTO;
-
-public class Instance {
-	public SungJukImpl getSungJukImpl(){
-		return new SungJukImpl();
-	}
-}
