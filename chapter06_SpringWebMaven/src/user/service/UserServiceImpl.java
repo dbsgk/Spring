@@ -1,6 +1,7 @@
 package user.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,11 @@ public class UserServiceImpl implements UserService{
 	public void modify(UserDTO userDTO) {
 		userDAO.modify(userDTO);
 		
+	}
+
+	@Override
+	public List<UserDTO> search(Map<String, String> map) {
+		return userDAO.search(map);
 	}
 
 }

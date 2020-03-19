@@ -133,4 +133,16 @@ public class UserController {
 	public void modify(@ModelAttribute UserDTO userDTO) {
         userService.modify(userDTO);
     }
+	
+	@RequestMapping(value = "/search",method = RequestMethod.POST)
+	@ResponseBody
+	//public void search(@RequestParam String searchOption,@RequestParam String searchText) {
+	public ModelAndView search(@RequestBody Map<String, String> map) {
+		System.out.println(map);
+        List<UserDTO> list = userService.search(map);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject(list);
+        mav.setViewName("jsonView");//json따라가라고 이렇게 이름 붙임.
+        return mav;
+    }
 }

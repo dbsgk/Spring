@@ -1,0 +1,25 @@
+@charset "UTF-8";
+td {font-size:10pt;}
+
+.addressA:link {color:black; text-decoration:none;} 
+.addressA:visited {color:black; text-decoration:none;}
+.addressA:hover {color:green; text-decoration:underline; font_weight:bold}
+.addressA:active {color:black; text-decoration:none;}
+
+#subjectA:link {color:black; text-decoration:none;} 
+#subjectA:visited {color:black; text-decoration:none;}
+#subjectA:hover {color:red; text-decoration:underline; font_weight:bold}
+#subjectA:active {color:black; text-decoration:none;}
+
+#paging{
+	color: black;
+	text-decoration:none;
+	cursor: pointer;
+}
+
+#currentPaging{
+	color: red;
+	text-decoration: underline;
+	cursor: pointer;
+}
+

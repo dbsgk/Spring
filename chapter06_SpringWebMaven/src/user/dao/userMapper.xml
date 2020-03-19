@@ -32,7 +32,9 @@
 	<select id="checkId" parameterType="String" resultType="user.bean.UserDTO">
 		select * from usertable where id=#{id}
 	</select>
-	
+	<select id="search" parameterType="java.util.Map" resultType="user.bean.UserDTO">
+		select * from usertable where ${searchOption} like '%'|| #{searchText}||'%'
+	</select>
 <!-- 	<select id="userSearch" parameterType="java.util.Map" resultType="user">parameterType에 그냥 HashMap만 쓰지말고 전부 적어줘야한다.
 		select * from usertable where 
 		<if test=" searchMethod == 'name' ">

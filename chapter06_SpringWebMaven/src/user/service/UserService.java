@@ -1,6 +1,7 @@
 package user.service;
 
 import java.util.List;
+import java.util.Map;
 
 import user.bean.UserDTO;
 
@@ -17,4 +18,6 @@ public interface UserService {
 	public UserDTO getUser(String id);
 
 	public void modify(UserDTO userDTO);
+
+	public List<UserDTO> search(Map<String, String> map);
 }

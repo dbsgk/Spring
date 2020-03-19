@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="memberSQL">
+	<resultMap type="member" id="memberResult">
+		<result property="name" column="NAME"/><!-- property:DTO에 있는 변수명, column:오라클 칼럼명 -->
+		<result property="id" column="ID"/>
+		<result property="pwd" column="PWD"/>
+	</resultMap>
+	
+	<!-- 아이디 중복확인 -->
+	<select id="isExistId" parameterType="String" resultType="member.bean.MemberDTO">
+		SELECT * from member where id=#{id}
+	</select>
+	
+	<select id="login" parameterType="java.util.Map" resultType="member">
+		select * from member where id=#{id} and pwd=#{pwd}
+	</select>
+	
+	<select id="postSearch" parameterType="java.util.Map" resultType="member.bean.AddressDTO">
+		SELECT * from newzipcode 
+		where sido like '%'||#{sido}||'%' and nvl(#{sigungu},'0') like '%'||#{sigungu}||'%' 
+				and roadname like '%'||#{roadname}||'%'
+	</select>
+	
+</mapper>	

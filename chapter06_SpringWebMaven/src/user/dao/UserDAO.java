@@ -15,4 +15,5 @@ public interface UserDAO {
 	public int idCheck(String userid);
 	public UserDTO checkId(String id);
 	public void modify(UserDTO userDTO);
+	public List<UserDTO> search(Map<String, String> map);
 }
